@@ -1,0 +1,40 @@
+services:
+  nextcloud:
+    image: nextcloud
+    container_name: nextcloud
+    network_mode: host
+    restart: always
+    volumes:
+      - /nextcloud:/var/www/html
+  tautulli:
+    image: linuxserver/tautulli
+    container_name: tautulli
+    network_mode: host
+    restart: always
+  plex:
+    image: linuxserver/plex
+    container_name: plex
+    network_mode: host
+    restart: always
+    volumes:
+      - /var/lib/plexmediaserver/Library/:/config/Library
+      - /nextcloud/data/ifabian/files/Filmek:/data/movies
+#      - /media/.transcode:/transcode
+    environment:
+      - VERSION=latest
+      - PUID=33
+      - PGID=33
+  transmission:
+    image: linuxserver/transmission
+    container_name: transmission
+    network_mode: host
+    restart: always
+    environment:
+      - PUID=33
+      - PGID=33
+    volumes:
+      - /etc/transmission-daemon:/config
+      - /nextcloud/data/ifabian/files/Filmek:/downloads
+#    ports:
+#      - 8080:8080
+#      - 51413/udp
