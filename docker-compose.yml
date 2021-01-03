@@ -39,3 +39,19 @@ services:
 #    ports:
 #      - 8080:8080
 #      - 51413/udp
+  radarr:
+    network_mode: host
+    container_name: radarr
+    image: linuxserver/radarr
+    restart: always
+    environment:
+      - PUID=33
+      - PGID=33
+    volumes:
+      - /nextcloud/data/ifabian/files/Filmek:/movies
+      - /nextcloud/data/ifabian/files/Filmek:/downloads
+  jackett:
+    network_mode: host
+    container_name: jackett
+    image: linuxserver/jackett
+    restart: always
