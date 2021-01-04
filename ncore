@@ -1,0 +1,4 @@
+#!/bin/bash
+grep $1. id2 | while read id; do
+        transmission-remote localhost:8080 -n pytthew:MT9287s -a `printf "https://ncore.cc/torrents.php?action=download&id=$id&key=70ebbcbcd80da20ff8aeabc709c75914"`
+done
